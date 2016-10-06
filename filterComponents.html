@@ -1,0 +1,73 @@
+<html>
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<title>User Stories</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Lets hear some stories!</h1>
+		<div>
+			<h3>Alex's stories</h3>
+			<ul class="list-group">
+				<story v-for="story in stories | filterBy 'Alex' in 'writer'" :storyprops="story">
+				</story>
+			</ul>
+			<h3>John's stories</h3>
+			<ul class="list-group">
+				<story v-for="story in stories | filterBy 'John' in 'writer'" :storyprops="story">	
+				</story>
+			</ul>
+			<div class="form-group">
+				<label for="query">
+					What are you looking for?
+				</label>
+				<input v-model="query" class="form-control">
+			</div>
+			<h3>Search results:</h3>
+			<ul class="list-group">
+				<story v-for="story in stories | filterBy query in 'plot'" :storyprops="story">
+				</story>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="http://v1.vuejs.org/js/vue.js"></script>
+
+<template id="story-template">
+	<li class="list-group-item">
+		{{storyprops.writer}} said {{storyprops.plot}}
+	</li>
+</template>
+
+<script type="text/javascript">
+
+	Vue.component('story',{
+		props:['storyprops'],
+		template:'#story-template'
+	})
+
+	new Vue({
+		el: '.container',
+		data: {
+			stories: [
+			{
+				plot: "I crashed my car today!",
+				writer: "Alex"
+			},
+			{
+				plot: "Yesterday, someone stole my bag!",
+				writer: "John"
+			},
+			{
+				plot: "Someone ate my chocolate...",
+				writer: "John"
+			},
+			{
+				plot: "I ate someone's chocolate!",
+				writer: "Alex"
+			},
+			]
+		}
+	})
+</script>
+</html>

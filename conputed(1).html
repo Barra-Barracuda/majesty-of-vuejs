@@ -1,0 +1,63 @@
+<html>
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<title>Hello Vue</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Enter 2 numbers to calculate their sum.</h1>
+		<form class="form-inline">
+			<input v-model.number="a" class="form-control">
+			<select v-model="operator">
+				<option v-for="option in options">
+					{{option.key}}
+				</option>
+			</select>
+			<input v-model.number="b"  class="form-control">
+		</form>
+		<h2>Result: {{a}} {{operator}} {{b}} = {{c}}</h2>
+		<pre> {{$data | json}} </pre>
+	</div>
+</body>
+<script src="http://vuejs.org/js/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '.container',
+		data: {
+			a: 1,
+			b: 2,
+			operator: "+",
+			options:[
+				{key:'+'},
+				{key:'-'},
+				{key:'*'},
+				{key:'/'},
+			]
+		},
+		computed: {
+			c: function () {
+				switch (this.operator) {
+					case "+":
+					return this.a + this.b
+					break;
+					case "-":
+					return this.a - this.b
+					break;
+					case "*":
+					return this.a * this.b
+					break;
+					case "/":
+					if(this.a && this.a==0 || this.b!=0){
+					return this.a / this.b
+				}else if(this.a==0 && this.b ==0){
+					return 0;
+				}else return NaN;
+					break;
+				}
+
+			}
+		},
+	});
+
+</script>
+</html>

@@ -1,0 +1,56 @@
+<html>
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<title>Famous Stories</title>
+</head>
+<body>
+	<div class="container">
+		<h1>People of Gaul</h1>
+		<ul class="list-group">
+		<li v-for="people in peoples | orderBy 'age'"
+			class="list-group-item"
+			>
+			{{ people.name }}  {{ people.age }}
+		</li>
+	</ul>
+	<h1>"Old" People of Gaul</h1>
+	<ul class="list-group">
+		<li v-for="people in peoples | old" class="list-group-item">
+			{{people.name}} {{people.age}}
+		</li>
+	</ul>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
+<script type="text/javascript">
+	Vue.filter('old',function(peoples){
+   	return peoples.filter(function(item){
+			return item.age > 50;
+		})
+	})
+
+	new Vue({
+		el:'.container',
+		data:{
+			old:1,
+			peoples:[
+			{
+				name:'Obelix',
+				age:31
+			},
+			{
+				name:"Asterix",
+				age:32
+			},
+			{
+				name:'Julius Caesar',
+				age:56
+			},{
+				name:'Majestix',
+				age:62
+			}
+			]
+		}
+	})
+</script>
+</html>

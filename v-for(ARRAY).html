@@ -1,0 +1,30 @@
+<html>
+<head>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<title>Hello Vue</title>
+</head>
+<body>
+	<div class="container">
+		<h1>The multiplication table of 4.</h1>
+		<ul class="list-group">
+			<li v-for="story in stories" class="list-group-item">
+				Someone said {{story}}
+			</li>
+		</ul>
+	</div>
+</body>
+<script src="http://vuejs.org/js/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '.container',
+		data:{
+			stories:[
+				"I crashed my car today!",
+			    "Yesterday, someone stole my bag!",
+ 				"Someone ate my chocolate...",
+
+			]
+		}
+	})
+</script>
+</html>

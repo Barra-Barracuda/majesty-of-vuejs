@@ -1,0 +1,36 @@
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <title>The Elections</title>
+</head>
+<!-- listening for keyboard event -->
+<body>
+<div class="container">
+   <story></story>
+   <story2 plot="My horse is amazing"></story2>
+   <story2 plot="My horse is amazing too"></story2>
+</div>
+</body>
+
+
+<template id="story2">
+    <h1>{{plot}}</h1>
+</template>
+
+<script src="http://vuejs.org/js/vue.js"></script>
+<script type="text/javascript">
+Vue.component('story',{
+    template:'<h1>hello</h1>'
+})
+
+
+
+Vue.component('story2',{
+    props:['plot'],
+    template:'#story2'
+})
+    var vm = new Vue({
+        el: '.container'
+    })
+</script>
+</html>
